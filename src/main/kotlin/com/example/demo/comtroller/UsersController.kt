@@ -44,4 +44,31 @@ class UsersController(private val usersRepository: UsersRepository) {
         return ResponseEntity(retObj.toJSONString(), HttpStatus.OK)
     }
 
+
+    @PostMapping("/get_user")
+    fun get_user(@RequestBody payload: String): ResponseEntity<*> {
+
+        var reqObj = JSONObject()
+        val parser = JSONParser()
+        val retObj = JSONObject()
+
+        try {
+            val obj = parser.parse(payload)
+            reqObj = obj as JSONObject
+
+            val phoneNum = reqObj["phoneNum"].toString();
+
+            val users = usersRepository.findByPhonenum(phoneNum)
+
+            retObj.put("user", users.user)
+            retObj.put("babyName", users.babyname)
+            retObj.put("babyWeek", users.babyweek)
+
+        } catch (e : Exception){
+
+        retObj.put("result", "N")
+    }
+        return ResponseEntity(retObj.toJSONString(), HttpStatus.OK)
+    }
+
 }
