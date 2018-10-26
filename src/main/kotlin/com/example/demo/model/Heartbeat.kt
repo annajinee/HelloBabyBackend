@@ -20,5 +20,4 @@ class Heartbeat {
     var type: String? = null
     @Column(name = "regtime")
     var regtime: String? = null
-
 }
