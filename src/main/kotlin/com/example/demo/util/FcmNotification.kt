@@ -10,7 +10,7 @@ import java.net.URL
 class FcmNotification {
 
     companion object {
-        val AUTH_KEY_FCM = "AIzaSyCN1D9Qjlpz4EuxtXABx4LPZhwSroMygXs"
+        val AUTH_KEY_FCM = ""
         val API_URL_FCM = "https://fcm.googleapis.com/fcm/send"
     }
 
