@@ -24,10 +24,10 @@ class UsersController(private val usersRepository: UsersRepository) {
             val obj = parser.parse(payload)
             reqObj = obj as JSONObject
 
-            val user = reqObj["user"].toString();
-            val babyName = reqObj["babyName"].toString();
-            val babyWeek = reqObj["babyWeek"].toString();
-            val phoneNum = reqObj["phoneNum"].toString();
+            val user = reqObj["user"].toString()
+            val babyName = reqObj["babyName"].toString()
+            val babyWeek = reqObj["babyWeek"].toString()
+            val phoneNum = reqObj["phoneNum"].toString()
 
             val users = Users()
             users.user = user
@@ -56,7 +56,7 @@ class UsersController(private val usersRepository: UsersRepository) {
             val obj = parser.parse(payload)
             reqObj = obj as JSONObject
 
-            val phoneNum = reqObj["phoneNum"].toString();
+            val phoneNum = reqObj["phoneNum"].toString()
 
             val users = usersRepository.findByPhonenum(phoneNum)
 
