@@ -4,9 +4,8 @@ import javax.persistence.*
 
 
 @Entity
-@Table(name = "heartbeat")
-class Heartbeat {
-
+@Table(name = "heartbeat_static")
+class HeartbeatStatic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,6 +18,6 @@ class Heartbeat {
     var week: String? = null
     @Column(name = "type")
     var type: String? = null
-    @Column(name = "regtime")
-    var regtime: String? = null
+    @Column(name = "datetime")
+    var datetime: String? = null
 }

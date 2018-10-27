@@ -1,53 +1,54 @@
-//package com.example.demo.util
-//
-//import org.json.simple.JSONObject
-//
-//import java.io.OutputStreamWriter
-//import java.net.HttpURLConnection
-//import java.net.URL
-//
-//
-//class FcmNotification {
-//
-//    companion object {
-//        val AUTH_KEY_FCM = "AIzaSyCN1D9Qjlpz4EuxtXABx4LPZhwSroMygXs"
-//        val API_URL_FCM = "https://fcm.googleapis.com/fcm/send"
-//    }
-//
-//    @Throws(Exception::class)
-//    fun pushFCMNotification(DeviceIdKey: String, title: String, message: String) {
-//
-//        val info = JSONObject().apply {
-//            put("title", title)
-//            put("body", message)
-//            put("type", "message")
-//        }
-//
-//        val json = JSONObject().apply {
-//            put("to", DeviceIdKey.trim { it <= ' ' })
-//            put("data", info)
-//        }
-//
-//        println(json.toString())
-//
-//        val url = URL(API_URL_FCM)
-//
-//        val conn = (url.openConnection() as HttpURLConnection).apply {
-//            useCaches = false
-//            doInput = true
-//            doOutput = true
-//
-//            requestMethod = "POST"
-//            setRequestProperty("Authorization", "key=$AUTH_KEY_FCM")
-//            setRequestProperty("Content-Type", "application/json")
-//        }
-//
-//        OutputStreamWriter(conn.outputStream).let {
-//            it.write(json.toString())
-//            it.flush()
-//        }
-//
-//        conn.inputStream
-//    }
-//
-//}
+package com.example.demo.util
+
+import com.google.auth.oauth2.GoogleCredentials
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.FirebaseMessagingException
+import com.google.firebase.messaging.Message
+import java.io.FileInputStream
+import java.io.FileNotFoundException
+import java.io.IOException
+
+class FcmNotification {
+
+    fun sendMessage(registrationToken: String, msg: String) {
+        val message = Message.builder()
+                .putData("body", msg)
+                .putData("title", "아빠~좋은 아침:D")
+                .putData("type", "message")
+                .putData("message", msg)
+                .setToken(registrationToken)
+                .build()
+
+        var response: String? = null
+        try {
+            response = FirebaseMessaging.getInstance().send(message)
+        } catch (e: FirebaseMessagingException) {
+            e.printStackTrace()
+        }
+
+        println("Success :" + response!!)
+    }
+
+    fun initilizeFcm() {
+        var serviceAccount: FileInputStream? = null
+        try {
+            serviceAccount = FileInputStream("/Users/annakim/Desktop/HelloBabyBackend/src/main/resources/serviceAccountKey.json")
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
+
+        var options: FirebaseOptions? = null
+        try {
+            options = FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount!!))
+                    .setDatabaseUrl("https://hellobaby-3af86.firebaseio.com")
+                    .build()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        FirebaseApp.initializeApp(options!!)
+    }
+}

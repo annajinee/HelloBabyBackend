@@ -2,6 +2,8 @@ package com.example.demo.comtroller
 
 import com.example.demo.model.Mission
 import com.example.demo.repository.MissionRepository
+import com.example.demo.repository.UsersRepository
+import com.example.demo.util.FcmNotification
 import org.json.simple.JSONArray
 import org.json.simple.JSONObject
 import org.json.simple.parser.JSONParser
@@ -13,7 +15,7 @@ import java.text.SimpleDateFormat
 
 
 @RestController
-class MissoinController(private val missionRepository: MissionRepository) {
+class MissoinController(private val usersRepository: UsersRepository, private val missionRepository: MissionRepository) {
 
     @PostMapping("/request_mission")
     fun request_mission(@RequestBody payload: String): ResponseEntity<*> {
@@ -28,6 +30,7 @@ class MissoinController(private val missionRepository: MissionRepository) {
 
             val phoneNum = reqObj["phoneNum"].toString()
             val mission = reqObj["mission"].toString()
+
             val nowTime = SimpleDateFormat("YYYY-MM-dd hh:mm:ss").format(java.util.Date(System.currentTimeMillis()))
 
             val missionObj = Mission();
@@ -36,6 +39,11 @@ class MissoinController(private val missionRepository: MissionRepository) {
             missionObj.mission = mission
             missionObj.complete = "N"
             missionRepository.save(missionObj)
+
+            val father = usersRepository.findByMappingphone(phoneNum)
+
+            val fcmNotification = FcmNotification()
+            fcmNotification.sendMessage(father.fcmkey!!, mission)
             retObj.put("result", "Y")
 
         } catch (e: Exception) {

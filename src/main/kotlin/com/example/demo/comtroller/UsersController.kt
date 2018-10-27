@@ -28,12 +28,16 @@ class UsersController(private val usersRepository: UsersRepository) {
             val babyName = reqObj["babyName"].toString()
             val babyWeek = reqObj["babyWeek"].toString()
             val phoneNum = reqObj["phoneNum"].toString()
+            val mappingPhone = reqObj["mappingPhone"].toString()
 
             val users = Users()
             users.user = user
             users.babyname = babyName
             users.babyweek = babyWeek
             users.phonenum = phoneNum
+            if(user.equals("D")){
+                users.mappingphone = mappingPhone
+            }
             usersRepository.save(users)
             retObj.put("result", "Y")
 

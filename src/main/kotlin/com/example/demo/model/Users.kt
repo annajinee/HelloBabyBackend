@@ -20,4 +20,6 @@ class Users {
     var phonenum: String? = null
     @Column(name = "fcmkey")
     var fcmkey: String? = null
+    @Column(name = "mappingphone")
+    var mappingphone: String? = null
 }
