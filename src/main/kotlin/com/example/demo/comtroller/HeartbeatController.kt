@@ -2,7 +2,6 @@ package com.example.demo.comtroller
 
 import com.example.demo.model.Heartbeat
 import com.example.demo.repository.HeartbeatRepository
-import com.example.demo.util.FcmNotification
 import org.json.simple.JSONObject
 import org.json.simple.parser.JSONParser
 import org.springframework.http.HttpStatus
@@ -37,14 +36,13 @@ class HeartbeatController(private val heartbeatRepository: HeartbeatRepository) 
             heartbeatRepository.save(heartbeat)
             retObj.put("result", "Y")
 
-            val fcmNotification = FcmNotification()
-            fcmNotification.pushFCMNotification(phoneNum, "HelloBaby, 엇! 좀 이상해요?", "박동수가 "+heartbeat +" 로 정상범위를 벗어났습니다")
+//            val fcmNotification = FcmNotification()
+//            fcmNotification.pushFCMNotification(phoneNum, "HelloBaby, 엇! 좀 이상해요?", "박동수가 "+heartbeat +" 로 정상범위를 벗어났습니다")
 
         } catch (e : Exception){
             retObj.put("result", "N")
         }
         return ResponseEntity(retObj.toJSONString(), HttpStatus.OK)
     }
-
 
 }
