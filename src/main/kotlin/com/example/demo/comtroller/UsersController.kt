@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class UsersController(private val usersRepository: UsersRepository) {
 
     @PostMapping("/put_user")
-    fun put_user(@RequestBody payload: String): ResponseEntity<*> {
+    fun putUser(@RequestBody payload: String): ResponseEntity<*> {
 
         var reqObj = JSONObject()
         val parser = JSONParser()
@@ -50,7 +50,7 @@ class UsersController(private val usersRepository: UsersRepository) {
 
 
     @PostMapping("/get_user")
-    fun get_user(@RequestBody payload: String): ResponseEntity<*> {
+    fun getUser(@RequestBody payload: String): ResponseEntity<*> {
 
         var reqObj = JSONObject()
         val parser = JSONParser()

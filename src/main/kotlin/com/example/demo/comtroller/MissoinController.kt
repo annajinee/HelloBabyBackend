@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat
 class MissoinController(private val usersRepository: UsersRepository, private val missionRepository: MissionRepository) {
 
     @PostMapping("/request_mission")
-    fun request_mission(@RequestBody payload: String): ResponseEntity<*> {
+    fun requestMission(@RequestBody payload: String): ResponseEntity<*> {
 
         var reqObj = JSONObject()
         val parser = JSONParser()
@@ -53,7 +53,7 @@ class MissoinController(private val usersRepository: UsersRepository, private va
     }
 
     @GetMapping("/get_mission_list/{phoneNum}")
-    fun get_mission_list(@PathVariable phoneNum: String): ResponseEntity<*> {
+    fun getMissionList(@PathVariable phoneNum: String): ResponseEntity<*> {
 
         val retObj = JSONObject()
 
@@ -78,7 +78,7 @@ class MissoinController(private val usersRepository: UsersRepository, private va
     }
 
     @GetMapping("/get_mission/{missionId}")
-    fun get_mission(@PathVariable missionId: Int): ResponseEntity<*> {
+    fun getMission(@PathVariable missionId: Int): ResponseEntity<*> {
 
         val retObj = JSONObject()
 
@@ -95,7 +95,7 @@ class MissoinController(private val usersRepository: UsersRepository, private va
     }
 
     @GetMapping("/complete_mission/{missionId}")
-    fun complete_mission(@PathVariable missionId: Int): ResponseEntity<*> {
+    fun completeMission(@PathVariable missionId: Int): ResponseEntity<*> {
 
         val retObj = JSONObject()
 

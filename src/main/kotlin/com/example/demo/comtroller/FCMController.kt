@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class FCMController(private val usersRepository: UsersRepository) {
 
     @PostMapping("/register_fcm_key")
-    fun put_fcm(@RequestBody payload: String): ResponseEntity<*> {
+    fun putFcm(@RequestBody payload: String): ResponseEntity<*> {
 
         var reqObj = JSONObject()
         val parser = JSONParser()
@@ -38,7 +38,7 @@ class FCMController(private val usersRepository: UsersRepository) {
     }
 
     @PostMapping("/send_fcm_message")
-    fun send_fcm(@RequestBody payload: String): ResponseEntity<*> {
+    fun sendFcm(@RequestBody payload: String): ResponseEntity<*> {
 
         var reqObj = JSONObject()
         val parser = JSONParser()

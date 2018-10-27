@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 @Repository
 interface UsersRepository : JpaRepository<Users, Int> {
     @Transactional(readOnly = true)
-    fun findByPhonenum(@Param("phonenum") phonenum: String): List<Users>
+    fun findByPhonenum(@Param("phonenum") phonenum: String): Users
     @Transactional(readOnly = true)
     fun findByMappingphone(@Param("mappingphone") phonenum: String): Users
 }
