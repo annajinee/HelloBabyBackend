@@ -11,12 +11,12 @@ import java.io.IOException;
 
 public class FcmNotification {
 
-    public void sendMessage(String registrationToken) {
+    public void sendMessage(String registrationToken, String msg) {
         Message message = Message.builder()
-                .putData("body", "아빠 딸끼!!!!!!!!!!!!!!!!!!")
-                .putData("title", "title")
+                .putData("body", msg)
+                .putData("title", "아빠!")
                 .putData("type", "message")
-                .putData("message", "hihihihihi")
+                .putData("message", msg)
                 .setToken(registrationToken)
                 .build();
 

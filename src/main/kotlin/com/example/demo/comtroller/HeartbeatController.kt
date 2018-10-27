@@ -36,9 +36,6 @@ class HeartbeatController(private val heartbeatRepository: HeartbeatRepository) 
             heartbeatRepository.save(heartbeat)
             retObj.put("result", "Y")
 
-//            val fcmNotification = FcmNotification()
-//            fcmNotification.pushFCMNotification(phoneNum, "HelloBaby, 엇! 좀 이상해요?", "박동수가 "+heartbeat +" 로 정상범위를 벗어났습니다")
-
         } catch (e : Exception){
             retObj.put("result", "N")
         }

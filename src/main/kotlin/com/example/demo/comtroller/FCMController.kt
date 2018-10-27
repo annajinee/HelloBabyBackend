@@ -43,7 +43,7 @@ class FCMController(private val usersRepository: UsersRepository) {
         var reqObj = JSONObject()
         val parser = JSONParser()
         val retObj = JSONObject()
-        System.out.println("send_fcm_message")
+
         try {
             val obj = parser.parse(payload)
             reqObj = obj as JSONObject
@@ -51,7 +51,7 @@ class FCMController(private val usersRepository: UsersRepository) {
             val message = reqObj["message"].toString()
 
             val fcmNotification = FcmNotification()
-            fcmNotification.sendMessage(registrationToken)
+            fcmNotification.sendMessage(registrationToken, message)
 
             retObj.put("result", "Y")
         } catch (e: Exception) {
