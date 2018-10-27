@@ -16,7 +16,7 @@ class FcmNotification {
         val message = Message.builder()
                 .putData("body", msg)
                 .putData("title", "아빠~좋은 아침:D")
-                .putData("type", "message")
+                .putData("type", msg)
                 .putData("message", msg)
                 .setToken(registrationToken)
                 .build()

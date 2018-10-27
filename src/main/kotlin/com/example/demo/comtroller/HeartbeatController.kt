@@ -1,10 +1,7 @@
 package com.example.demo.comtroller
 
 import com.example.demo.model.Heartbeat
-import com.example.demo.repository.HeartbeatBaseRepository
-import com.example.demo.repository.HeartbeatRepository
-import com.example.demo.repository.HeartbeatStaticRepository
-import com.example.demo.repository.UsersRepository
+import com.example.demo.repository.*
 import com.example.demo.util.FcmNotification
 import org.json.simple.JSONObject
 import org.json.simple.parser.JSONParser
@@ -17,7 +14,8 @@ import java.text.SimpleDateFormat
 class HeartbeatController(private val heartbeatRepository: HeartbeatRepository,
                           private val heartbeatStaticRepository: HeartbeatStaticRepository,
                           private val heartbeatBaseRepository: HeartbeatBaseRepository,
-                          private val usersRepository: UsersRepository) {
+                          private val usersRepository: UsersRepository,
+                          private val notificationRepository: NotificationRepository) {
 
     @PostMapping("/put_heartbeat")
     fun putHeartbeat(@RequestBody payload: String): ResponseEntity<*> {
@@ -60,6 +58,8 @@ class HeartbeatController(private val heartbeatRepository: HeartbeatRepository,
                 fcmNotification.sendMessage(mother.fcmkey!!, "심장박동수가 정상범위를 넘어갔어요!")
                 val fatherFcm = usersRepository.findByMappingphone(phoneNum).fcmkey
                 fcmNotification.sendMessage(fatherFcm!!, "심장박동수가 정상범위를 넘어갔어요!")
+                NotificationContoller(notificationRepository).setNotifaction(phoneNum, "baby", "심장박동수가 정상범위를 넘어갔어요!", "")
+
             }
 
         } catch (e: Exception) {

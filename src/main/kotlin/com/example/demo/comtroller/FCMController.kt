@@ -16,6 +16,7 @@ class FCMController(private val usersRepository: UsersRepository) {
     @PostMapping("/register_fcm_key")
     fun putFcm(@RequestBody payload: String): ResponseEntity<*> {
 
+
         var reqObj = JSONObject()
         val parser = JSONParser()
         val retObj = JSONObject()
@@ -53,6 +54,31 @@ class FCMController(private val usersRepository: UsersRepository) {
             val fcmNotification = FcmNotification()
             fcmNotification.sendMessage(registrationToken, message)
 
+            retObj.put("result", "Y")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            retObj.put("result", "N")
+        }
+        return ResponseEntity(retObj.toJSONString(), HttpStatus.OK)
+    }
+
+    @PostMapping("/send_fcm_custom")
+    fun sendFcmByCustom(@RequestBody payload: String): ResponseEntity<*> {
+
+        var reqObj = JSONObject()
+        val parser = JSONParser()
+        val retObj = JSONObject()
+
+        try {
+            val obj = parser.parse(payload)
+            reqObj = obj as JSONObject
+            val message = reqObj["message"].toString()
+            val phonenum = reqObj["phoneNum"].toString()
+
+            val user = usersRepository.findByPhonenum(phonenum)
+
+            val fcmNotification = FcmNotification()
+            fcmNotification.sendMessage(user.fcmkey!!, message)
             retObj.put("result", "Y")
         } catch (e: Exception) {
             e.printStackTrace()

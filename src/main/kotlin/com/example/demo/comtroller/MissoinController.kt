@@ -2,6 +2,7 @@ package com.example.demo.comtroller
 
 import com.example.demo.model.Mission
 import com.example.demo.repository.MissionRepository
+import com.example.demo.repository.NotificationRepository
 import com.example.demo.repository.UsersRepository
 import com.example.demo.util.FcmNotification
 import org.json.simple.JSONArray
@@ -13,9 +14,10 @@ import org.springframework.web.bind.annotation.*
 import java.text.SimpleDateFormat
 
 
-
 @RestController
-class MissoinController(private val usersRepository: UsersRepository, private val missionRepository: MissionRepository) {
+class MissoinController(private val usersRepository: UsersRepository,
+                        private val missionRepository: MissionRepository,
+                        private val notificationRepository: NotificationRepository) {
 
     @PostMapping("/request_mission")
     fun requestMission(@RequestBody payload: String): ResponseEntity<*> {
@@ -44,6 +46,9 @@ class MissoinController(private val usersRepository: UsersRepository, private va
 
             val fcmNotification = FcmNotification()
             fcmNotification.sendMessage(father.fcmkey!!, mission)
+
+            NotificationContoller(notificationRepository).setNotifaction(father.phonenum!!, "mission", mission, "")
+
             retObj.put("result", "Y")
 
         } catch (e: Exception) {
@@ -60,7 +65,7 @@ class MissoinController(private val usersRepository: UsersRepository, private va
         try {
             val missionList = missionRepository.findByPhonenum(phoneNum)
             val missionArry = JSONArray()
-            for(mission in missionList){
+            for (mission in missionList) {
                 var missionObj = JSONObject()
                 missionObj.put("mission", mission.mission)
                 missionObj.put("missionId", mission.missionid)
@@ -105,6 +110,12 @@ class MissoinController(private val usersRepository: UsersRepository, private va
             mission.completedate = nowTime
             missionRepository.save(mission)
             retObj.put("result", "Y")
+
+            val user = usersRepository.findByPhonenum(mission.phonenum!!)
+            val fcmNotification = FcmNotification()
+            fcmNotification.sendMessage(user.fcmkey!!, "아빠 미션완료")
+
+            NotificationContoller(notificationRepository).setNotifaction(user.phonenum!!, "mission", "아빠 미션완료", "")
 
         } catch (e: Exception) {
             retObj.put("result", "N")
