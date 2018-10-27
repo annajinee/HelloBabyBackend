@@ -16,8 +16,6 @@ class HeartbeatStatic {
     var heartbeat: String? = null
     @Column(name = "week")
     var week: String? = null
-    @Column(name = "type")
-    var type: String? = null
     @Column(name = "datetime")
     var datetime: String? = null
 }

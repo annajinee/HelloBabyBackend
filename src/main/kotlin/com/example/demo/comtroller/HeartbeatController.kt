@@ -32,14 +32,15 @@ class HeartbeatController(private val heartbeatRepository: HeartbeatRepository,
 
             val phoneNum = reqObj["phoneNum"].toString()
             val heartbeatper = reqObj["heartbeat"].toString()
-            val type = reqObj["type"].toString()
+            val temperature = reqObj["temperature"].toString()
+            val humidity = reqObj["humidity"].toString()
             val nowTime = SimpleDateFormat("YYYY-MM-dd hh:mm:ss").format(java.util.Date(System.currentTimeMillis()))
 
             val heartbeat = Heartbeat()
             heartbeat.phonenum = phoneNum
             heartbeat.heartbeat = heartbeatper
-            heartbeat.type = type
-            heartbeat.phonenum = phoneNum
+            heartbeat.temperature = temperature
+            heartbeat.humidity = humidity
             heartbeat.regtime = nowTime
             val mother = usersRepository.findByPhonenum(phoneNum)
             heartbeat.week = mother.babyweek
@@ -82,7 +83,7 @@ class HeartbeatController(private val heartbeatRepository: HeartbeatRepository,
             val datetime = reqObj["datetime"].toString()
             val type = reqObj["type"].toString()
 
-            val heartbeatStatic = heartbeatStaticRepository.findByPhonenumAndDatetimeAndType(phoneNum, datetime, type)
+            val heartbeatStatic = heartbeatStaticRepository.findByPhonenumAndDatetime(phoneNum, datetime)
 
             retObj.put("heartbeat", heartbeatStatic.heartbeat)
 

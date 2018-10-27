@@ -17,8 +17,10 @@ class Heartbeat {
     var heartbeat: String? = null
     @Column(name = "week")
     var week: String? = null
-    @Column(name = "type")
-    var type: String? = null
+    @Column(name = "temperature")
+    var temperature: String? = null
+    @Column(name = "humidity")
+    var humidity: String? = null
     @Column(name = "regtime")
     var regtime: String? = null
 }

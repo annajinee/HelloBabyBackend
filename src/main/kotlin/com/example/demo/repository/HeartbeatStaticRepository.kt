@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional
 @Repository
 interface HeartbeatStaticRepository : JpaRepository<HeartbeatStatic, Int> {
     @Transactional(readOnly = true)
-    fun findByPhonenumAndDatetimeAndType(@Param("phonenum") phonenum: String,
-                                         @Param("datetime") datetime: String,
-                                         @Param("type") type: String): HeartbeatStatic
+    fun findByPhonenumAndDatetime(@Param("phonenum") phonenum: String,
+                                  @Param("datetime") datetime: String): HeartbeatStatic
 }

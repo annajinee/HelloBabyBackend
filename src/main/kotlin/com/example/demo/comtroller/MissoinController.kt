@@ -58,7 +58,6 @@ class MissoinController(private val usersRepository: UsersRepository, private va
         val retObj = JSONObject()
 
         try {
-
             val missionList = missionRepository.findByPhonenum(phoneNum)
             val missionArry = JSONArray()
             for(mission in missionList){
@@ -83,7 +82,6 @@ class MissoinController(private val usersRepository: UsersRepository, private va
         val retObj = JSONObject()
 
         try {
-
             val mission = missionRepository.findByMissionid(missionId)
             retObj.put("mission", mission.mission)
             retObj.put("missionId", mission.missionid)
@@ -100,7 +98,6 @@ class MissoinController(private val usersRepository: UsersRepository, private va
         val retObj = JSONObject()
 
         try {
-
             val mission = missionRepository.findByMissionid(missionId)
             val nowTime = SimpleDateFormat("YYYY-MM-dd hh:mm:ss").format(java.util.Date(System.currentTimeMillis()))
 
