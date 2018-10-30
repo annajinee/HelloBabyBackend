@@ -12,11 +12,11 @@ import java.io.IOException
 
 class FcmNotification {
 
-    fun sendMessage(registrationToken: String, msg: String) {
+    fun sendMessage(registrationToken: String, msg: String, type:String) {
         val message = Message.builder()
                 .putData("body", msg)
                 .putData("title", "아빠~좋은 아침:D")
-                .putData("type", msg)
+                .putData("type", type)
                 .putData("message", msg)
                 .setToken(registrationToken)
                 .build()
@@ -34,7 +34,7 @@ class FcmNotification {
     fun initilizeFcm() {
         var serviceAccount: FileInputStream? = null
         try {
-            serviceAccount = FileInputStream("/Users/annakim/Desktop/HelloBabyBackend/src/main/resources/serviceAccountKey.json")
+            serviceAccount = FileInputStream("/home/HelloBaby/serviceAccountKey.json")
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         }

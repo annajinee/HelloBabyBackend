@@ -52,13 +52,28 @@ class HeartbeatController(private val heartbeatRepository: HeartbeatRepository,
                 week=35
             }
             val heartbeatBase = heartbeatBaseRepository.findByWeek(week.toString())
-            if (heartbeatper.toInt() > heartbeatBase.heartbeat_max!!.toInt() || heartbeatper.toInt() < heartbeatBase.heartbeat_min!!.toInt()) {
+            if (heartbeatper.toInt() > heartbeatBase.heartbeat_max!!.toInt()) {
 
                 val fcmNotification = FcmNotification()
-                fcmNotification.sendMessage(mother.fcmkey!!, "심장박동수가 정상범위를 넘어갔어요!")
+                fcmNotification.sendMessage(mother.fcmkey!!, "아잉 신나! 오늘은 왠지 기분이 조아요~ :ㅇ", "exciting")
                 val fatherFcm = usersRepository.findByMappingphone(phoneNum).fcmkey
-                fcmNotification.sendMessage(fatherFcm!!, "심장박동수가 정상범위를 넘어갔어요!")
-                NotificationContoller(notificationRepository).setNotifaction(phoneNum, "baby", "심장박동수가 정상범위를 넘어갔어요!", "")
+                fcmNotification.sendMessage(fatherFcm!!, "아잉 신나! 오늘은 왠지 기분이 조아요~ :ㅇ", "exciting")
+
+            }
+            else if (heartbeatper.toInt() < heartbeatBase.heartbeat_min!!.toInt()) {
+
+                val fcmNotification = FcmNotification()
+                fcmNotification.sendMessage(mother.fcmkey!!, "쿨쿨~ 자고 있어요", "sleeping")
+                val fatherFcm = usersRepository.findByMappingphone(phoneNum).fcmkey
+                fcmNotification.sendMessage(fatherFcm!!, "쿨쿨~ 자고 있어요", "sleeping")
+
+            }
+            else if (heartbeatper.toInt() > heartbeatBase.heartbeat_max!!.toInt() || heartbeatper.toInt() < heartbeatBase.heartbeat_min!!.toInt()){
+
+                val fcmNotification = FcmNotification()
+                fcmNotification.sendMessage(mother.fcmkey!!, "괜시리 웃음이나요~ 살인미소 예약ing…", "smile")
+                val fatherFcm = usersRepository.findByMappingphone(phoneNum).fcmkey
+                fcmNotification.sendMessage(fatherFcm!!, "괜시리 웃음이나요~ 살인미소 예약ing…", "smile")
 
             }
 

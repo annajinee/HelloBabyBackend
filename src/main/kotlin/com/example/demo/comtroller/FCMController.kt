@@ -52,7 +52,7 @@ class FCMController(private val usersRepository: UsersRepository) {
             val message = reqObj["message"].toString()
 
             val fcmNotification = FcmNotification()
-            fcmNotification.sendMessage(registrationToken, message)
+            fcmNotification.sendMessage(registrationToken, message, "test")
 
             retObj.put("result", "Y")
         } catch (e: Exception) {
@@ -74,11 +74,11 @@ class FCMController(private val usersRepository: UsersRepository) {
             reqObj = obj as JSONObject
             val message = reqObj["message"].toString()
             val phonenum = reqObj["phoneNum"].toString()
-
+            val type = reqObj["type"].toString()
             val user = usersRepository.findByPhonenum(phonenum)
 
             val fcmNotification = FcmNotification()
-            fcmNotification.sendMessage(user.fcmkey!!, message)
+            fcmNotification.sendMessage(user.fcmkey!!, message, type)
             retObj.put("result", "Y")
         } catch (e: Exception) {
             e.printStackTrace()

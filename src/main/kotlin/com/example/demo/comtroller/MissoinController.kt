@@ -45,7 +45,7 @@ class MissoinController(private val usersRepository: UsersRepository,
             val father = usersRepository.findByMappingphone(phoneNum)
 
             val fcmNotification = FcmNotification()
-            fcmNotification.sendMessage(father.fcmkey!!, mission)
+            fcmNotification.sendMessage(father.fcmkey!!, mission, "mission")
 
             NotificationContoller(notificationRepository).setNotifaction(father.phonenum!!, "mission", mission, "")
 
@@ -113,7 +113,7 @@ class MissoinController(private val usersRepository: UsersRepository,
 
             val user = usersRepository.findByPhonenum(mission.phonenum!!)
             val fcmNotification = FcmNotification()
-            fcmNotification.sendMessage(user.fcmkey!!, "아빠 미션완료")
+            fcmNotification.sendMessage(user.fcmkey!!, "아빠 미션완료", "mission")
 
             NotificationContoller(notificationRepository).setNotifaction(user.phonenum!!, "mission", "아빠 미션완료", "")
 
