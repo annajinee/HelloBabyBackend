@@ -10,12 +10,14 @@ HOST: http://106.10.46.76:8080/
 <br>
 
  ### 유저 정보 등록 [POST /put_user]
+ 
  + Parameters
     + user (string) - 유저 선택 (Mom : M, Dad : D)
     + babyName (string) - 태명
     + babyWeek (string) - 임신 주차
     + phoneNum (String) - 핸드폰 번호 
     + mappingPhone (String ) - 아빠(D)의 경우만 엄마의 폰 번호 입력
+    
  + Request (application/json)
          {
           "user": "M",
@@ -23,18 +25,23 @@ HOST: http://106.10.46.76:8080/
           "babyweek": "4",
           "phoneNum": "01012345678"
         }
+        
  + Response 200 (application/json)
      + Body
              {
                 "result": "Y"
             }
  ### 유저 정보 확인 [POST /get_user]
+ 
  + Parameters
       + phoneNum (String) - 핸드폰 번호 (01012345678 데이터있음)
+      
  + Request (application/json)
+ 
          {
           "phoneNum": "01012345678"
         }
+        
  + Response 200 (application/json)
      + Body
          {
@@ -44,11 +51,13 @@ HOST: http://106.10.46.76:8080/
         }
     
  ### 심장박동수, 온습도 입력 [POST /put_heartbeat]
+ 
  + Parameters
       + phoneNum (String) - 핸드폰 번호 
       + heartbeat (String) - 박동수
       + temperature (String) - 온도
       + humidity (String) - 습도
+      
  + Request (application/json)
          {
           "phoneNum": "01012345678",
@@ -56,20 +65,25 @@ HOST: http://106.10.46.76:8080/
           "temperature": "27",
           "humidity": "50"
         }
+        
  + Response 200 (application/json)
      + Body
          {
           "result":"Y"
         }
+        
  ### 심장박동수, 온습도 일별 평균 확인 [POST /get_heartbeat/avg]
+ 
  + Parameters
       + datetime (String) - format: YYYY-MM-dd (10/23 ~10/27 데이터 존재)
       + phoneNum (String) - 핸드폰 번호 (01012345678 데이터 존재)
+      
  + Request (application/json)
          {
           "phoneNum": "01012345678"
           "datetime": "2018-10-27"
         }
+        
  + Response 200 (application/json)
      + Body
          {
@@ -79,8 +93,10 @@ HOST: http://106.10.46.76:8080/
         }
     
  ### 심장박동수 주차별 전체평균 데이터 확인 [POST /get_heartbeat/avg/{week}]
+ 
  + Parameters
       + week (String) - 임신주차
+      
  + Response 200 (application/json)
      + Body
          {
@@ -89,6 +105,7 @@ HOST: http://106.10.46.76:8080/
         }
     
  ### FCM registration key 저장 [POST /register_fcm_key]
+ 
 + Parameters
     + phoneNum (String) - 핸드폰 번호
     + registrationToken (String) - FCM client token
@@ -107,6 +124,7 @@ HOST: http://106.10.46.76:8080/
             "result": "Y"
         }
  ### FCM send tester [POST /send_fcm_message]
+ 
 + Parameters
         + message (String) - message
         + registrationToken (String) - FCM client token
@@ -124,12 +142,13 @@ HOST: http://106.10.46.76:8080/
         {
             "result": "Y"
         }
+        
  ### 미션수행 요청 by Mom [POST /request_mission]
+ 
  + Parameters
     + phoneNum (String) - 핸드폰 번호
     + mission (String) -mission
        
-        
 + Request (application/json)
         
         {
@@ -143,11 +162,11 @@ HOST: http://106.10.46.76:8080/
         {
             "result": "Y"
         }
+        
  ### 미션수행 목록보기(전체) [GET /get_mission_list/{phoneNum}]
+ 
  + Parameters
     + phoneNum (String) - 핸드폰 번호(01012345678 데이터있음)
-       
-        
         
 + Response 200 (application/json)
      + Body
@@ -170,6 +189,7 @@ HOST: http://106.10.46.76:8080/
             ]
         }
  ### 미션수행 목록보기(단일) [GET /get_mission/{missionId}]
+ 
  + Parameters
     + missionId(String) - 미션 아이디
        
@@ -181,22 +201,24 @@ HOST: http://106.10.46.76:8080/
                 "mission":"산책가고싶다~~ ㅎㅎ 날씨좋치 아빵??",
                 "missionId":"13"
         }
+        
  ### 미션수행 완료 by Dad [GET /complete_mission/{missionId}]
+ 
  + Parameters
     + missionId(String) - 미션 아이디
        
-        
 + Response 200 (application/json)
      + Body
     
         {
             "result": "Y"
         }
+        
  ### 알림 목록 리스트 보기 [GET /get_notification_list/{phoneNum}]
+ 
  + Parameters
     + phoneNum (String) - 핸드폰 번호(01012345678 데이터 있음)
        
-        
 + Response 200 (application/json)
      + Body
     
@@ -231,11 +253,12 @@ HOST: http://106.10.46.76:8080/
             },
             ]
         }
+        
  ### FCM custom [POST /send_fcm_custom]
+ 
  + Parameters
     + missionId(String) - 미션 아이디
-       
-        
+      
 + Request (application/json)
         
         {
@@ -243,6 +266,7 @@ HOST: http://106.10.46.76:8080/
             "mission":"콩알이 아빠~ 좀전부터 딸기가 아른아른ㅜ 오늘 꼭 먹고시포요 ㅜㅜ",
             "type": "exciting, smile, sleeping
         }
+        
  + Response 200 (application/json)
      + Body
     
