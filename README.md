@@ -29,8 +29,7 @@ HOST: http://106.10.46.76:8080/
         }
         
  + Response 200 (application/json)
- 
-     + Body
+
              {
                 "result": "Y"
             }
@@ -47,8 +46,7 @@ HOST: http://106.10.46.76:8080/
         }
         
  + Response 200 (application/json)
- 
-     + Body
+
          {
           "user": "M",
           "babyname": "딸기",
@@ -74,8 +72,7 @@ HOST: http://106.10.46.76:8080/
         }
         
  + Response 200 (application/json)
- 
-     + Body
+
          {
           "result":"Y"
         }
@@ -95,8 +92,7 @@ HOST: http://106.10.46.76:8080/
         }
         
  + Response 200 (application/json)
- 
-     + Body
+
          {
           "heartbeat":"97",
           "temperature": "27",
@@ -110,8 +106,7 @@ HOST: http://106.10.46.76:8080/
       + week (String) - 임신주차
       
  + Response 200 (application/json)
- 
-     + Body
+
          {
           "heartbeat_max":"180",
           "heartbeat_min":"120"
@@ -133,8 +128,6 @@ HOST: http://106.10.46.76:8080/
         
 + Response 200 (application/json)
 
-     + Body
-    
         {
             "result": "Y"
         }
@@ -153,8 +146,6 @@ HOST: http://106.10.46.76:8080/
         }
         
 + Response 200 (application/json)
-
-     + Body
     
         {
             "result": "Y"
@@ -176,8 +167,6 @@ HOST: http://106.10.46.76:8080/
         
 + Response 200 (application/json)
 
-     + Body
-    
         {
             "result": "Y"
         }
@@ -189,8 +178,6 @@ HOST: http://106.10.46.76:8080/
     + phoneNum (String) - 핸드폰 번호(01012345678 데이터있음)
         
 + Response 200 (application/json)
-
-     + Body
     
         {
             "result": "Y",
@@ -217,8 +204,6 @@ HOST: http://106.10.46.76:8080/
        
         
 + Response 200 (application/json)
-
-     + Body
     
         {
                 "mission":"산책가고싶다~~ ㅎㅎ 날씨좋치 아빵??",
@@ -232,8 +217,6 @@ HOST: http://106.10.46.76:8080/
     + missionId(String) - 미션 아이디
        
 + Response 200 (application/json)
-
-     + Body
     
         {
             "result": "Y"
@@ -246,8 +229,6 @@ HOST: http://106.10.46.76:8080/
     + phoneNum (String) - 핸드폰 번호(01012345678 데이터 있음)
        
 + Response 200 (application/json)
-
-     + Body
     
         {
             "result": "Y",
@@ -296,8 +277,6 @@ HOST: http://106.10.46.76:8080/
         }
         
  + Response 200 (application/json)
- 
-     + Body
     
         {
                 "result":"Y"
