@@ -8,7 +8,10 @@ HOST: http://106.10.46.76:8080/
  # Hello Baby
  ## Hello Baby [/]
 <br>
-###### HOST: http://106.10.46.76:8080/
+
+
+
+
  ### 유저 정보 등록 [POST /put_user]
  + Parameters
     + user (string) - 유저 선택 (Mom : M, Dad : D)
