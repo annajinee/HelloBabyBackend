@@ -1,6 +1,6 @@
 # HelloBabyBackend
 
-BRestful CRUD API using Kotlin, Spring Boot, Mysql, JPA and Hibernate.
+Restful CRUD API using Kotlin, Spring Boot, Mysql, JPA and Hibernate.
 
 
 FORMAT: 1A
